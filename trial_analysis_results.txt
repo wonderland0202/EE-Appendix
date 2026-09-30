@@ -1,0 +1,134 @@
+======================================================================
+LOW (Manhattan Grid) (n = 500)
+======================================================================
+Mean Euclidean OD distance :   1510.8 m
+Mean shortest-path cost    :    182.6 s
+Effective straight-line speed d/t (mean of pairs):  29.9 km/h
+Implied v_max from reported GDF:  56.3 km/h
+
+Per-expanded-node cost (mean runtime / mean nodes):
+  Euclid :   3.91 us/node
+  ALT4   :   5.77 us/node
+  ALT8   :   8.81 us/node
+  ALT16  :  15.47 us/node
+  ALT per-node cost ~ 2.44 + 0.81 * L  (r^2 = 0.999)
+  Break-even node ratio N_ALT/N_Euc = t_Euc/t_ALT :
+    L= 4: break-even 0.68 | observed 0.32 -> ALT faster
+    L= 8: break-even 0.44 | observed 0.25 -> ALT faster
+    L=16: break-even 0.25 | observed 0.20 -> ALT faster
+
+Within-city regression:  log(nodes) = b0 + b1*log(Euclid dist) + b2*log(rel. detour)
+  Euclid : b1 =  1.83 +/- 0.04 | b2 (detour) =  2.26 +/- 0.17 | R^2 = 0.93
+  ALT4   : b1 =  1.37 +/- 0.07 | b2 (detour) =  1.82 +/- 0.26 | R^2 = 0.76
+  ALT8   : b1 =  1.23 +/- 0.06 | b2 (detour) =  1.67 +/- 0.23 | R^2 = 0.75
+  ALT16  : b1 =  1.07 +/- 0.05 | b2 (detour) =  1.47 +/- 0.20 | R^2 = 0.76
+  Node ratio ALT/Euclid vs detour (Spearman):
+    L= 4: rho =  0.02, p = 0.638
+    L= 8: rho = -0.02, p = 0.727
+    L=16: rho = -0.05, p = 0.226
+
+Paired runtime differences (ms), mean [95% CI], Wilcoxon p:
+  Euclid - ALT4 :  0.310 [ 0.285,  0.336]  p = 5.25e-80
+  Euclid - ALT8 :  0.256 [ 0.231,  0.282]  p = 1.81e-61
+  Euclid - ALT16:  0.129 [ 0.106,  0.153]  p = 4.01e-17
+  ALT4   - ALT8 : -0.054 [-0.064, -0.043]  p = 9.64e-44
+  ALT8   - ALT16: -0.127 [-0.139, -0.115]  p = 7.25e-63
+
+Speedup per L (ratio of mean runtimes, Euclid / ALT):
+  L= 4: 2.15x
+  L= 8: 1.79x
+  L=16: 1.29x
+
+======================================================================
+MEDIUM (Paris Core) (n = 500)
+======================================================================
+Mean Euclidean OD distance :   2579.6 m
+Mean shortest-path cost    :    419.7 s
+Effective straight-line speed d/t (mean of pairs):  22.0 km/h
+Implied v_max from reported GDF:  50.0 km/h
+
+Per-expanded-node cost (mean runtime / mean nodes):
+  Euclid :   3.83 us/node
+  ALT4   :   6.72 us/node
+  ALT8   :   9.20 us/node
+  ALT16  :  16.25 us/node
+  ALT per-node cost ~ 3.19 + 0.81 * L  (r^2 = 0.994)
+  Break-even node ratio N_ALT/N_Euc = t_Euc/t_ALT :
+    L= 4: break-even 0.57 | observed 0.29 -> ALT faster
+    L= 8: break-even 0.42 | observed 0.19 -> ALT faster
+    L=16: break-even 0.24 | observed 0.14 -> ALT faster
+
+Within-city regression:  log(nodes) = b0 + b1*log(Euclid dist) + b2*log(rel. detour)
+  Euclid : b1 =  1.92 +/- 0.05 | b2 (detour) =  1.91 +/- 0.14 | R^2 = 0.93
+  ALT4   : b1 =  1.58 +/- 0.10 | b2 (detour) =  1.60 +/- 0.31 | R^2 = 0.66
+  ALT8   : b1 =  1.41 +/- 0.09 | b2 (detour) =  1.49 +/- 0.27 | R^2 = 0.67
+  ALT16  : b1 =  1.30 +/- 0.08 | b2 (detour) =  1.47 +/- 0.24 | R^2 = 0.69
+  Node ratio ALT/Euclid vs detour (Spearman):
+    L= 4: rho =  0.00, p = 0.932
+    L= 8: rho =  0.07, p = 0.139
+    L=16: rho =  0.11, p = 0.0183
+
+Paired runtime differences (ms), mean [95% CI], Wilcoxon p:
+  Euclid - ALT4 :  1.324 [ 1.197,  1.451]  p = 5.97e-72
+  Euclid - ALT8 :  1.475 [ 1.347,  1.602]  p = 2.33e-76
+  Euclid - ALT16:  1.052 [ 0.927,  1.178]  p = 6.91e-49
+  ALT4   - ALT8 :  0.151 [ 0.088,  0.214]  p = 0.111
+  ALT8   - ALT16: -0.422 [-0.483, -0.361]  p = 4.26e-50
+
+Speedup per L (ratio of mean runtimes, Euclid / ALT):
+  L= 4: 1.99x
+  L= 8: 2.25x
+  L=16: 1.66x
+
+======================================================================
+HIGH (Pittsburgh Rivers) (n = 500)
+======================================================================
+Mean Euclidean OD distance :   3111.1 m
+Mean shortest-path cost    :    353.8 s
+Effective straight-line speed d/t (mean of pairs):  31.4 km/h
+Implied v_max from reported GDF:  88.5 km/h
+
+Per-expanded-node cost (mean runtime / mean nodes):
+  Euclid :   4.74 us/node
+  ALT4   :   6.66 us/node
+  ALT8   :   9.30 us/node
+  ALT16  :  15.71 us/node
+  ALT per-node cost ~ 3.45 + 0.76 * L  (r^2 = 0.998)
+  Break-even node ratio N_ALT/N_Euc = t_Euc/t_ALT :
+    L= 4: break-even 0.71 | observed 0.29 -> ALT faster
+    L= 8: break-even 0.51 | observed 0.20 -> ALT faster
+    L=16: break-even 0.30 | observed 0.13 -> ALT faster
+
+Within-city regression:  log(nodes) = b0 + b1*log(Euclid dist) + b2*log(rel. detour)
+  Euclid : b1 =  1.82 +/- 0.05 | b2 (detour) =  1.93 +/- 0.14 | R^2 = 0.91
+  ALT4   : b1 =  1.69 +/- 0.10 | b2 (detour) =  2.33 +/- 0.27 | R^2 = 0.70
+  ALT8   : b1 =  1.55 +/- 0.09 | b2 (detour) =  2.25 +/- 0.26 | R^2 = 0.68
+  ALT16  : b1 =  1.32 +/- 0.09 | b2 (detour) =  1.90 +/- 0.24 | R^2 = 0.63
+  Node ratio ALT/Euclid vs detour (Spearman):
+    L= 4: rho =  0.21, p = 1.51e-06
+    L= 8: rho =  0.26, p = 2.13e-09
+    L=16: rho =  0.24, p = 5.87e-08
+
+Paired runtime differences (ms), mean [95% CI], Wilcoxon p:
+  Euclid - ALT4 :  2.464 [ 2.283,  2.645]  p = 2.79e-83
+  Euclid - ALT8 :  2.530 [ 2.344,  2.716]  p = 4.04e-82
+  Euclid - ALT16:  2.383 [ 2.180,  2.586]  p = 1.87e-74
+  ALT4   - ALT8 :  0.065 [-0.001,  0.131]  p = 0.0261
+  ALT8   - ALT16: -0.147 [-0.215, -0.079]  p = 5.15e-15
+
+Speedup per L (ratio of mean runtimes, Euclid / ALT):
+  L= 4: 2.45x
+  L= 8: 2.54x
+  L=16: 2.34x
+
+======================================================================
+DISTANCE-MATCHED COMPARISON (pairs with 1000 m <= Euclidean distance < 3000 m)
+======================================================================
+Tier                          n  meanD(m)   Euc N  Euc ms    A4 N    ms     x    A8 N    ms     x   A16 N    ms     x
+LOW (Manhattan Grid)        377      1777   182.9    0.71    56.4  0.33  2.20    43.6  0.38  1.86    34.3  0.53  1.35
+MEDIUM (Paris Core)         269      2080   471.6    1.79   126.6  0.87  2.06    86.6  0.81  2.21    71.4  1.17  1.53
+HIGH (Pittsburgh Rivers)    202      2071   503.9    2.37   157.7  1.07  2.22   108.8  1.04  2.29    76.2  1.22  1.95
+Node reduction vs Euclid (%):
+  LOW (Manhattan Grid)      L=4:  69.2  L=8:  76.1  L=16:  81.2
+  MEDIUM (Paris Core)       L=4:  73.1  L=8:  81.6  L=16:  84.9
+  HIGH (Pittsburgh Rivers)  L=4:  68.7  L=8:  78.4  L=16:  84.9
